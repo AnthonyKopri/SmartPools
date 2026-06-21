@@ -13,14 +13,14 @@ namespace SmartPools
         [SerializeField] protected EnumMap<TEnum,TPool> prefabDictionary;
         protected override ObjectPool<TPool> Pool { get; set; }
         protected abstract Dictionary<TEnum, ObjectPool<TPool>> MultiPool { get; set; }
-        public EnumMap<TEnum, List<TPool>> ActiveObjects;
+        public Dictionary<TEnum, List<TPool>> ActiveObjects;
 
         private Dictionary<TEnum, int> _creationIndexes = new();
         public override void InitializePool()
         {
             base.InitializePool();
             MultiPool = new Dictionary<TEnum, ObjectPool<TPool>>();
-            ActiveObjects = new EnumMap<TEnum, List<TPool>>();
+            ActiveObjects = new Dictionary<TEnum, List<TPool>>();
             DefineMultiPool();
         }
 
